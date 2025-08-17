@@ -23,6 +23,10 @@ const formSchema = z.object({
   restrictions: z.string().min(3, "Enumera cualquier restricción o escribe 'ninguna'."),
   goals: z.string().min(3, "¿Cuáles son tus metas de salud (ej. perder peso, ganar músculo)?"),
   budget: z.coerce.number({invalid_type_error: "Por favor ingresa un número válido."}).positive("El presupuesto debe ser un número positivo."),
+  weight: z.coerce.number({invalid_type_error: "Por favor ingresa un número válido."}).positive("El peso debe ser un número positivo."),
+  height: z.coerce.number({invalid_type_error: "Por favor ingresa un número válido."}).positive("La altura debe ser un número positivo."),
+  bodyType: z.string().min(3, "Por favor describe tu tipo de cuerpo (ej. ectomorfo, mesomorfo, endomorfo)."),
+  bodyFatPercentage: z.coerce.number({invalid_type_error: "Por favor ingresa un número válido."}).optional(),
 });
 
 type MealPlanFormProps = {
@@ -38,6 +42,10 @@ export function MealPlanForm({ onSubmit, isPending }: MealPlanFormProps) {
       restrictions: "",
       goals: "",
       budget: 150000,
+      weight: 70,
+      height: 170,
+      bodyType: "",
+      bodyFatPercentage: undefined,
     },
   });
 
@@ -99,6 +107,64 @@ export function MealPlanForm({ onSubmit, isPending }: MealPlanFormProps) {
             </FormItem>
           )}
         />
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          <FormField
+            control={form.control}
+            name="weight"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Peso (kg)</FormLabel>
+                <FormControl>
+                  <Input type="number" placeholder="70" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+           <FormField
+            control={form.control}
+            name="height"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Altura (cm)</FormLabel>
+                <FormControl>
+                  <Input type="number" placeholder="170" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
+        
+        <div className="grid md:grid-cols-2 gap-8">
+          <FormField
+            control={form.control}
+            name="bodyType"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Tipo de Cuerpo</FormLabel>
+                <FormControl>
+                  <Input placeholder="ej. Ectomorfo, Mesomorfo" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+           <FormField
+            control={form.control}
+            name="bodyFatPercentage"
+            render={({ field }) => (
+              <FormItem>
+                <FormLabel>Porcentaje de Grasa Corporal (%) (Opcional)</FormLabel>
+                <FormControl>
+                  <Input type="number" placeholder="15" {...field} />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+        </div>
 
         <FormField
           control={form.control}

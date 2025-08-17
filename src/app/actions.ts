@@ -7,10 +7,14 @@ import {
 } from "@/ai/flows/generate-meal-plan";
 
 const formSchema = z.object({
-  dietaryPreferences: z.string().min(1, "Dietary preferences are required."),
-  restrictions: z.string().min(1, 'Please state restrictions or "none".'),
-  goals: z.string().min(1, "Goals are required."),
-  budget: z.coerce.number().min(0, "Budget must be a positive number."),
+  dietaryPreferences: z.string().min(1, "Las preferencias dietéticas son obligatorias."),
+  restrictions: z.string().min(1, 'Por favor, indique restricciones o "ninguna".'),
+  goals: z.string().min(1, "Los objetivos son obligatorios."),
+  budget: z.coerce.number().min(0, "El presupuesto debe ser un número positivo."),
+  weight: z.coerce.number().positive("El peso debe ser un número positivo."),
+  height: z.coerce.number().positive("La altura debe ser un número positivo."),
+  bodyType: z.string().min(1, "El tipo de cuerpo es obligatorio."),
+  bodyFatPercentage: z.coerce.number().optional(),
 });
 
 type MealPlanState = {
@@ -26,7 +30,7 @@ export async function generatePlanAction(
   if (!validatedFields.success) {
     return {
       data: null,
-      error: "Invalid input. Please check the form fields.",
+      error: "Entrada no válida. Por favor, compruebe los campos del formulario.",
     };
   }
 
@@ -37,7 +41,7 @@ export async function generatePlanAction(
     console.error(error);
     return {
       data: null,
-      error: "An unexpected error occurred. Please try again later.",
+      error: "Se ha producido un error inesperado. Por favor, inténtelo de nuevo más tarde.",
     };
   }
 }

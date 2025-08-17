@@ -14,21 +14,25 @@ import {z} from 'genkit';
 const GenerateMealPlanInputSchema = z.object({
   dietaryPreferences: z
     .string()
-    .describe('The user\'s dietary preferences (e.g., vegetarian, vegan, pescatarian).'),
+    .describe('Las preferencias dietéticas del usuario (ej. vegetariano, vegano, pescetariano).'),
   restrictions: z
     .string()
-    .describe('Any dietary restrictions the user has (e.g., allergies, intolerances).'),
+    .describe('Cualquier restricción dietética que tenga el usuario (ej. alergias, intolerancias).'),
   goals: z
     .string()
-    .describe('The user\'s health and fitness goals (e.g., weight loss, muscle gain).'),
-  budget: z.number().describe('The user\'s weekly budget for meals in COP.'),
+    .describe('Los objetivos de salud y fitness del usuario (ej. pérdida de peso, ganancia muscular).'),
+  budget: z.number().describe('El presupuesto semanal del usuario para comidas en COP.'),
+  weight: z.number().describe('El peso del usuario en kilogramos.'),
+  height: z.number().describe('La altura del usuario en centímetros.'),
+  bodyType: z.string().describe('El tipo de cuerpo del usuario (ej. ectomorfo, mesomorfo, endomorfo).'),
+  bodyFatPercentage: z.number().optional().describe('El porcentaje de grasa corporal del usuario (opcional).'),
 });
 export type GenerateMealPlanInput = z.infer<typeof GenerateMealPlanInputSchema>;
 
 const GenerateMealPlanOutputSchema = z.object({
-  mealPlan: z.string().describe('A personalized weekly meal plan.'),
-  shoppingList: z.string().describe('A consolidated shopping list for the meal plan.'),
-  costEstimate: z.string().describe('Estimated cost of the meal plan in COP.'),
+  mealPlan: z.string().describe('Un plan de comidas semanal personalizado.'),
+  shoppingList: z.string().describe('Una lista de compras consolidada para el plan de comidas.'),
+  costEstimate: z.string().describe('Costo estimado del plan de comidas en COP.'),
 });
 export type GenerateMealPlanOutput = z.infer<typeof GenerateMealPlanOutputSchema>;
 
@@ -40,12 +44,17 @@ const mealPlanPrompt = ai.definePrompt({
   name: 'mealPlanPrompt',
   input: {schema: GenerateMealPlanInputSchema},
   output: {schema: GenerateMealPlanOutputSchema},
-  prompt: `Eres un experto en nutrición diseñando un plan de comidas semanal para un usuario en Colombia.
+  prompt: `Eres un nutricionista experto que diseña un plan de comidas semanal para un usuario en Colombia.
 
-  Considera las preferencias dietéticas del usuario: {{{dietaryPreferences}}}
-  Considera las restricciones del usuario: {{{restrictions}}}
-  Considera las metas del usuario: {{{goals}}}
-  El presupuesto del usuario es: {{{budget}}} COP.
+  Ten en cuenta los siguientes datos del usuario:
+  - Preferencias dietéticas: {{{dietaryPreferences}}}
+  - Restricciones: {{{restrictions}}}
+  - Metas: {{{goals}}}
+  - Presupuesto: {{{budget}}} COP
+  - Peso: {{{weight}}} kg
+  - Altura: {{{height}}} cm
+  - Tipo de cuerpo: {{{bodyType}}}
+  {{#if bodyFatPercentage}}- Porcentaje de grasa corporal: {{{bodyFatPercentage}}}%{{/if}}
 
   Genera un plan de comidas semanal detallado, una lista de compras consolidada y un costo estimado en COP.
   Asegúrate de que la lista de compras consolide los ingredientes cuando sea posible (por ejemplo, si dos comidas usan cebollas, combina la cantidad de cebollas).
