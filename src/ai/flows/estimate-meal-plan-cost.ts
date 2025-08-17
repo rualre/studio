@@ -29,15 +29,15 @@ const prompt = ai.definePrompt({
   name: 'estimateMealPlanCostPrompt',
   input: {schema: EstimateMealPlanCostInputSchema},
   output: {schema: EstimateMealPlanCostOutputSchema},
-  prompt: `You are an expert financial advisor specializing in estimating the cost of meal plans in Colombia.
+  prompt: `Eres un experto asesor financiero especializado en estimar el costo de los planes de comidas en Colombia.
 
-You will receive a meal plan and a currency, and you will estimate the total cost of the meal plan in that currency based on average prices in Colombia.
+Recibirás un plan de comidas y una moneda, y estimarás el costo total del plan de comidas en esa moneda basándote en los precios promedio en Colombia.
 
-Meal Plan: {{{mealPlan}}}
-Currency: {{{currency}}}
+Plan de Comidas: {{{mealPlan}}}
+Moneda: {{{currency}}}
 
-Consider the prices of ingredients in Colombia, and estimate the total cost of the meal plan.
-Return only the estimated cost as a number.  Do not include the currency symbol.  Do not include any other explanation or text.`,
+Considera los precios de los ingredientes en Colombia y estima el costo total del plan de comidas.
+Devuelve solo el costo estimado como un número. No incluyas el símbolo de la moneda. No incluyas ninguna otra explicación o texto.`,
 });
 
 const estimateMealPlanCostFlow = ai.defineFlow(

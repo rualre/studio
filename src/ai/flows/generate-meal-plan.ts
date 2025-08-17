@@ -40,28 +40,29 @@ const mealPlanPrompt = ai.definePrompt({
   name: 'mealPlanPrompt',
   input: {schema: GenerateMealPlanInputSchema},
   output: {schema: GenerateMealPlanOutputSchema},
-  prompt: `You are a nutrition expert designing a weekly meal plan for a user.
+  prompt: `Eres un experto en nutrición diseñando un plan de comidas semanal para un usuario en Colombia.
 
-  Consider the user's dietary preferences: {{{dietaryPreferences}}}
-  Consider the user's restrictions: {{{restrictions}}}
-  Consider the user's goals: {{{goals}}}
-  The user's budget is: {{{budget}}} COP.
+  Considera las preferencias dietéticas del usuario: {{{dietaryPreferences}}}
+  Considera las restricciones del usuario: {{{restrictions}}}
+  Considera las metas del usuario: {{{goals}}}
+  El presupuesto del usuario es: {{{budget}}} COP.
 
-  Generate a detailed weekly meal plan, a consolidated shopping list, and an estimated cost in COP.
-  Make sure that the shopping list consolidates ingredients where possible (e.g. if two meals use onions, combine the amount of onions).
+  Genera un plan de comidas semanal detallado, una lista de compras consolidada y un costo estimado en COP.
+  Asegúrate de que la lista de compras consolide los ingredientes cuando sea posible (por ejemplo, si dos comidas usan cebollas, combina la cantidad de cebollas).
+  Basa tus respuestas en alimentos y productos que se encuentran comúnmente en Colombia.
 
-  Format the meal plan, shopping list and cost estimates in a human-readable format.
+  Formatea el plan de comidas, la lista de compras y las estimaciones de costos en un formato legible para humanos.
 
-  Here is a sample shopping list. Note how similar items are combined:
+  Aquí tienes una lista de compras de ejemplo. Observa cómo se combinan los artículos similares:
 
-  Produce:
-  - 2 Onions
-  - 2 Tomatoes
-  - 1 head of Lettuce
-  Dairy:
-  - 1 gallon of Milk
-  - 1 dozen Eggs
-  Other:
+  Frutas y Verduras:
+  - 2 Cebollas
+  - 2 Tomates
+  - 1 cabeza de Lechuga
+  Lácteos:
+  - 1 galón de Leche
+  - 1 docena de Huevos
+  Otros:
   - ...
   `,
 });

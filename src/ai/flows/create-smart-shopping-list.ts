@@ -36,11 +36,11 @@ const prompt = ai.definePrompt({
   name: 'createSmartShoppingListPrompt',
   input: {schema: CreateSmartShoppingListInputSchema},
   output: {schema: CreateSmartShoppingListOutputSchema},
-  prompt: `You are a personal assistant who specializes in creating shopping lists from meal plans.
+  prompt: `Eres un asistente personal especializado en crear listas de compras a partir de planes de comidas.
 
-  Given the following meal plan, create a shopping list that consolidates ingredients and groups them into useful shopping categories such as "produce", "dairy", "meat", etc.
+  Dado el siguiente plan de comidas, crea una lista de compras que consolide los ingredientes y los agrupe en categorías útiles como "frutas y verduras", "lácteos", "carnes", etc.
 
-  Meal Plan:
+  Plan de Comidas:
   {{mealPlan}}
   `,
 });
