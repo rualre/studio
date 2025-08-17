@@ -40,20 +40,19 @@ export default function Home() {
         <div className="flex items-center gap-2">
           <Leaf className="h-6 w-6 text-primary" />
           <h1 className="text-xl font-bold font-headline tracking-tight">
-            NutriAssist
+            NutriAsistente
           </h1>
         </div>
-        <Button variant="ghost">Login</Button>
+        <Button variant="ghost">Iniciar Sesión</Button>
       </header>
 
       <main className="flex-1 w-full max-w-4xl mx-auto p-4 md:p-8">
         <section className="text-center mb-8">
           <h2 className="text-3xl md:text-4xl font-bold font-headline mb-2">
-            Your Personal AI Nutrition Assistant
+            Tu Asistente de Nutrición Personal con IA
           </h2>
           <p className="text-muted-foreground">
-            Fill out your preferences below and let our AI craft the perfect
-            weekly meal plan for you.
+            Completa tus preferencias a continuación y deja que nuestra IA cree el plan de comidas semanal perfecto para ti.
           </p>
         </section>
 
@@ -67,7 +66,7 @@ export default function Home() {
           <div className="flex flex-col items-center justify-center gap-4 p-8">
             <Loader2 className="h-12 w-12 animate-spin text-primary" />
             <p className="text-muted-foreground">
-              Crafting your personalized plan...
+              Creando tu plan personalizado...
             </p>
           </div>
         )}
@@ -87,7 +86,7 @@ export default function Home() {
 
       <footer className="w-full text-center p-4">
         <p className="text-sm text-muted-foreground">
-          &copy; {new Date().getFullYear()} NutriAssist. All rights reserved.
+          &copy; {new Date().getFullYear()} NutriAsistente. Todos los derechos reservados.
         </p>
       </footer>
     </div>

@@ -59,16 +59,16 @@ export function MealPlanDisplay({ data }: MealPlanDisplayProps) {
   return (
     <Card className="shadow-lg animate-in fade-in-50 duration-500">
       <CardHeader>
-        <CardTitle className="font-headline text-2xl">Your Personalized Plan is Ready!</CardTitle>
+        <CardTitle className="font-headline text-2xl">¡Tu Plan Personalizado está Listo!</CardTitle>
         <CardDescription>
-          Here is your weekly meal plan and shopping list.
+          Aquí tienes tu plan de comidas semanal y tu lista de compras.
         </CardDescription>
       </CardHeader>
       <CardContent>
         <Tabs defaultValue="meal-plan" className="w-full">
           <TabsList className="grid w-full grid-cols-2">
-            <TabsTrigger value="meal-plan">Meal Plan</TabsTrigger>
-            <TabsTrigger value="shopping-list">Shopping List</TabsTrigger>
+            <TabsTrigger value="meal-plan">Plan de Comidas</TabsTrigger>
+            <TabsTrigger value="shopping-list">Lista de Compras</TabsTrigger>
           </TabsList>
           <TabsContent value="meal-plan" className="mt-4">
             <Card>
@@ -88,7 +88,7 @@ export function MealPlanDisplay({ data }: MealPlanDisplayProps) {
       </CardContent>
        <CardFooter>
           <div className="w-full text-center">
-            <p className="text-muted-foreground text-sm">Estimated Weekly Cost</p>
+            <p className="text-muted-foreground text-sm">Costo Semanal Estimado</p>
             <p className="text-3xl font-bold text-primary">{formattedCost}</p>
           </div>
         </CardFooter>

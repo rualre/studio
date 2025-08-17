@@ -19,10 +19,10 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 
 const formSchema = z.object({
-  dietaryPreferences: z.string().min(3, "Please describe your dietary preferences (e.g., vegetarian, keto)."),
-  restrictions: z.string().min(3, "List any restrictions or enter 'none'."),
-  goals: z.string().min(3, "What are your health goals (e.g., weight loss, muscle gain)?"),
-  budget: z.coerce.number({invalid_type_error: "Please enter a valid number."}).positive("Budget must be a positive number."),
+  dietaryPreferences: z.string().min(3, "Por favor describe tus preferencias dietéticas (ej. vegetariano, keto)."),
+  restrictions: z.string().min(3, "Enumera cualquier restricción o escribe 'ninguna'."),
+  goals: z.string().min(3, "¿Cuáles son tus metas de salud (ej. perder peso, ganar músculo)?"),
+  budget: z.coerce.number({invalid_type_error: "Por favor ingresa un número válido."}).positive("El presupuesto debe ser un número positivo."),
 });
 
 type MealPlanFormProps = {
@@ -50,12 +50,12 @@ export function MealPlanForm({ onSubmit, isPending }: MealPlanFormProps) {
             name="dietaryPreferences"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Dietary Preferences</FormLabel>
+                <FormLabel>Preferencias Dietéticas</FormLabel>
                 <FormControl>
-                  <Input placeholder="e.g., Vegetarian, Low-carb" {...field} />
+                  <Input placeholder="ej. Vegetariano, Bajo en carbohidratos" {...field} />
                 </FormControl>
                 <FormDescription>
-                  What kind of food do you prefer?
+                  ¿Qué tipo de comida prefieres?
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -66,12 +66,12 @@ export function MealPlanForm({ onSubmit, isPending }: MealPlanFormProps) {
             name="goals"
             render={({ field }) => (
               <FormItem>
-                <FormLabel>Health Goals</FormLabel>
+                <FormLabel>Metas de Salud</FormLabel>
                 <FormControl>
-                  <Input placeholder="e.g., Weight loss, more energy" {...field} />
+                  <Input placeholder="ej. Perder peso, más energía" {...field} />
                 </FormControl>
                 <FormDescription>
-                  What do you want to achieve?
+                  ¿Qué quieres lograr?
                 </FormDescription>
                 <FormMessage />
               </FormItem>
@@ -84,16 +84,16 @@ export function MealPlanForm({ onSubmit, isPending }: MealPlanFormProps) {
           name="restrictions"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Allergies & Restrictions</FormLabel>
+              <FormLabel>Alergias y Restricciones</FormLabel>
               <FormControl>
                 <Textarea
-                  placeholder="e.g., Peanuts, Gluten-free, none"
+                  placeholder="ej. Maní, Sin gluten, ninguna"
                   className="resize-none"
                   {...field}
                 />
               </FormControl>
                <FormDescription>
-                  Any food you must avoid?
+                  ¿Algún alimento que debas evitar?
                 </FormDescription>
               <FormMessage />
             </FormItem>
@@ -105,7 +105,7 @@ export function MealPlanForm({ onSubmit, isPending }: MealPlanFormProps) {
           name="budget"
           render={({ field }) => (
             <FormItem>
-              <FormLabel>Weekly Budget (COP)</FormLabel>
+              <FormLabel>Presupuesto Semanal (COP)</FormLabel>
               <FormControl>
                 <Input type="number" placeholder="150000" {...field} />
               </FormControl>
@@ -118,10 +118,10 @@ export function MealPlanForm({ onSubmit, isPending }: MealPlanFormProps) {
           {isPending ? (
             <>
               <Loader2 className="mr-2 h-4 w-4 animate-spin" />
-              Generating...
+              Generando...
             </>
           ) : (
-            "Generate My Plan"
+            "Generar Mi Plan"
           )}
         </Button>
       </form>
